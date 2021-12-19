@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import USERS_ACTION from '../../redux/users/actions';
 
 // styles
 import './SignInUp.css';
 
 // pages
+import User from '../../models/User';
 import Login from './Login/Login';
 import Register from './Register/Register';
 
 function SignInUp() {
+
+  const dispatch = useDispatch();
+
+  const handleTabClick = (e : any) => {
+    dispatch(USERS_ACTION.setError(''));
+    dispatch(USERS_ACTION.setSuccess(''));
+  };
+
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-3 mt-lg-5">
         <div className="row">
-          <div className="col-11 col-lg-4 col-xl-3 mx-auto text-center p-3 bg-white shadow border">
+          <div className="col-11 col-lg-4 col-xl-4 mx-auto text-center p-3 bg-white shadow border">
             <ul className="nav nav-pills nav-justified" id="signInUpTab" role="tablist">
               <li className="nav-item" role="presentation">
-                <button className="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">
-                  Sign In
+                <button onClick={handleTabClick} className="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">
+                  Login
                 </button>
               </li>
               <li className="nav-item" role="presentation">
-                <button className="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab" aria-controls="signup" aria-selected="false">
-                  Sign Up
+                <button onClick={handleTabClick} className="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab" aria-controls="signup" aria-selected="false">
+                  Register
                 </button>
               </li>
             </ul>
