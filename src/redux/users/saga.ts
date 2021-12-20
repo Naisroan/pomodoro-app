@@ -1,6 +1,7 @@
 import { select, put, takeEvery, delay } from 'redux-saga/effects';
 import User from '../../models/User';
 import ACTIONS from './actions';
+import { browserHistory } from "../../redux/reducer";
 
 function* signin({ payload } : any) {
   try {
@@ -22,7 +23,9 @@ function* signin({ payload } : any) {
     }
      
     yield put(ACTIONS.login(user));
-    yield put(ACTIONS.setSuccess(`the user ${user.userName} has been authenticated `));
+    yield browserHistory.push('/');
+    
+    // yield put(ACTIONS.setSuccess(`the user ${user.userName} has been authenticated `));
 
   } catch (error) {
     yield put(ACTIONS.setError(error));

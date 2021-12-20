@@ -2,7 +2,7 @@ import User from "../../models/User";
 import ACTIONS from "./actions";
 
 // planilla del estado
-interface State {
+interface UsersState {
   authUser: User;
   users: User[];
   status: StatusType;
@@ -15,7 +15,7 @@ interface StatusType {
 }
 
 // estado inicial
-const initState : State = {
+const initState : UsersState = {
   authUser: {
     email: '',
     id: 0,
@@ -31,7 +31,7 @@ const initState : State = {
 }
 
 // reducer principal
-const reducer = (state : State = initState, action : any) : State => {
+const reducer = (state : UsersState = initState, action : any) : UsersState => {
 
   const { type, payload } = action;
 

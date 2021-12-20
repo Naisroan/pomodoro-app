@@ -6,7 +6,6 @@ import USERS_ACTION from '../../redux/users/actions';
 import './SignInUp.css';
 
 // pages
-import User from '../../models/User';
 import Login from './Login/Login';
 import Register from './Register/Register';
 
