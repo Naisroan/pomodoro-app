@@ -9,7 +9,7 @@ import Layout from './Layout/Layout';
 import SignInUp from './SignInUp/SignInUp';
 
 // router
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import OnlyAuthRoute from '../components/OnlyAuthRoute';
 
 function App() {
@@ -17,13 +17,8 @@ function App() {
     <>
       <Switch>
 
-        <OnlyAuthRoute exact path='/'>
-          <Layout />
-        </OnlyAuthRoute>
-
-        <Route exact path='/login'>
-          <SignInUp />
-        </Route>
+        <OnlyAuthRoute exact path='/' component={Layout} />
+        <Route exact path='/login' component={SignInUp} />
         
       </Switch>
     </>

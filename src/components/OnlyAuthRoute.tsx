@@ -5,27 +5,22 @@ import {
   Redirect
 } from "react-router-dom";
 
-import store from "../redux/store";
-import User from '../models/User';
+import { useSelector } from 'react-redux';
+import { GlobalState } from '../redux/reducer';
 
-let auth : User;
+const OnlyAuthRoute = ({ component : Component, ...rest } : any) => {
 
-store.subscribe(() => {
-  //debugger;
-  auth = store.getState().users.authUser;
-}); 
-
-const OnlyAuthRoute = ({ comp : Component, ...rest } : any) => {
+  const auth = useSelector((state : GlobalState) => state.users.authUser);
 
   return (
     <Route
       {...rest}
-      render={props => auth.email !== "" ? (
-          <Component {...props} />
-        ) : (
+      render={props => !auth || auth.email === "" ? (
             <Redirect
               to={{ pathname: "/login", state: { from: props.location } }}
             />
+        ) : (
+            <Component {...props} />
           )
         }
   />);
