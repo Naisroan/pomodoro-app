@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <div id="main">
-        <Sidebar isVisible={auth && auth.email !== ""} ></Sidebar>
+        <Sidebar userName={auth.userName} isVisible={auth && auth.email !== ""} ></Sidebar>
         <div id="home" className={auth && auth.email !== "" ? "auth" : ""}>
           <Switch>
             <Redirect exact from="/" to="/home" />

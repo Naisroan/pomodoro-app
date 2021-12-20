@@ -11,7 +11,7 @@ interface ICPageTitle {
 const PageTitle = (props : ICPageTitle) => {
   return (
     <>
-    <div id="pagetitle" className="mb-5 p-3 bg-light">
+    <div id="pagetitle" className="mb-3 mb-lg-3 p-3 bg-light">
       <h4 className="title">
         {props.title}
       </h4>

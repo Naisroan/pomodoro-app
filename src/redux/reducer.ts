@@ -6,12 +6,16 @@ import { createBrowserHistory } from 'history';
 
 // reducers
 import users from './users/reducer';
+import tasks from './tasks/reducer';
+import timer from './timer/reducer';
 
 export const browserHistory = createBrowserHistory();
 
 const rootReducer = combineReducers({
   router: connectRouter(browserHistory),
-  users
+  users,
+  tasks,
+  timer
 });
 
 export type GlobalState = ReturnType<typeof rootReducer>;

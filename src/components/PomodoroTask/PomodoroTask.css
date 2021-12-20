@@ -1,0 +1,7 @@
+#pomtask.finished {
+  border-bottom: 2px solid #2ad8c0;
+}
+
+#pomtask.active {
+  border-bottom: 2px solid #7c2a35;
+}

@@ -22,7 +22,7 @@ const initState : UsersState = {
     password: '',
     userName: '',
   },
-  users: [],
+  users: [ { id: 1, email: 'test@hotmail.com', password: '123', userName: 'test' } ],
   status: {
     isLoading: false,
     isError: false,
@@ -95,7 +95,14 @@ const reducer = (state : UsersState = initState, action : any) : UsersState => {
 
     case ACTIONS.LOGOUT: {
 
-      return initState;
+      return {
+        ...state,
+        status: {
+          isLoading: false,
+          isError: false,
+          msg: payload.message
+        }
+      }
 
     }
 

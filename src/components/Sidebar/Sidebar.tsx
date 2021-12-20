@@ -11,10 +11,11 @@ import { GlobalState } from '../../redux/reducer';
 import USERS_ACTIONS from '../../redux/users/actions';
 
 interface SidebarType {
+  userName?: string,
   isVisible?: boolean
 }
 
-const Sidebar = ({ isVisible } : SidebarType) => {
+const Sidebar = ({ userName, isVisible } : SidebarType) => {
 
   const dispatcher = useDispatch();
   const location = useSelector((state : GlobalState) => state.router.location.pathname);
@@ -48,10 +49,13 @@ const Sidebar = ({ isVisible } : SidebarType) => {
           </li>
         </ul>
         <div className="dropdown border-top">
-          <a href="#" className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="user" data-bs-toggle="dropdown" aria-expanded="false">
             <img src={userImage} alt="mdo" width="24" height="24" className="rounded-circle" />
           </a>
-          <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+          <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="user">
+            <li>
+              <h6 className="dropdown-header">{userName}</h6>
+            </li>
             <li>
               <a className="dropdown-item" href="#" onClick={handleSignOut}>Sign out</a>
             </li>

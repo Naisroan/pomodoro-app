@@ -63,6 +63,12 @@ function* signup({ payload } : any) {
 function* logout() {
   try {
 
+    yield put(ACTIONS.login({
+      id: 0,
+      email: '',
+      password: '',
+      userName: ''
+    }));
     yield browserHistory.push('/login');
   } catch (error) {
     yield put(ACTIONS.setError(error));
@@ -72,4 +78,5 @@ function* logout() {
 export default function* index() {
   yield takeEvery(ACTIONS.SIGNUP, signup);
   yield takeEvery(ACTIONS.SIGNIN, signin);
+  yield takeEvery(ACTIONS.LOGOUT, logout);
 }
