@@ -23,7 +23,7 @@ function* signin({ payload } : any) {
     }
      
     yield put(ACTIONS.login(user));
-    yield browserHistory.push('/');
+    yield browserHistory.push('/home');
     
     // yield put(ACTIONS.setSuccess(`the user ${user.userName} has been authenticated `));
 
@@ -55,6 +55,15 @@ function* signup({ payload } : any) {
     yield put(ACTIONS.create(payload.nodo));
     yield put(ACTIONS.setSuccess(`the user ${payload.nodo.userName} has been created`));
 
+  } catch (error) {
+    yield put(ACTIONS.setError(error));
+  }
+}
+
+function* logout() {
+  try {
+
+    yield browserHistory.push('/login');
   } catch (error) {
     yield put(ACTIONS.setError(error));
   }

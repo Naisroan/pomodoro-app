@@ -24,6 +24,10 @@ const ACTIONS = {
     type: ACTIONS.LOGIN,
     payload: { nodo }
   }),
+  logout: () => ({
+    type: ACTIONS.LOGOUT,
+    payload: { }
+  }),
   create: (nodo : User) => ({
     type: ACTIONS.CREATE,
     payload: { nodo }

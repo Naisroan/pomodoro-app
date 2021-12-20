@@ -1,0 +1,4 @@
+#pagetitle .title,
+#pagetitle .desc {
+  font-variant-caps: all-petite-caps;
+}

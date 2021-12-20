@@ -93,6 +93,12 @@ const reducer = (state : UsersState = initState, action : any) : UsersState => {
 
     }
 
+    case ACTIONS.LOGOUT: {
+
+      return initState;
+
+    }
+
     case ACTIONS.SUCCESS: {
 
       return {

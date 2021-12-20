@@ -1,0 +1,14 @@
+#sidebar #logo {
+  width: 33px;
+}
+
+#sidebar ul.nav .icon {
+  fill: currentColor;
+  font-size: 1.5rem;
+  vertical-align: -.125em;
+  pointer-events: none;
+}
+
+#sidebar .nav-flush .nav-link {
+  border-radius: 0;
+}

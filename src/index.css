@@ -9,3 +9,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-pills .nav-link.active {
+  background-color: rgb(138, 48, 48) !important;
+}
+
+.nav-pills .nav-link:not(.active) {
+  background-color: #f3f3f3 !important;
+  color: rgb(138, 48, 48);
+}
