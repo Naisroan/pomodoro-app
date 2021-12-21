@@ -20,7 +20,9 @@ const Register = () => {
     const nodo : User = {
       email: email,
       userName: user,
-      password: password
+      password: password,
+      secondsRested: 0,
+      secondsWorked: 0
     }
 
     dispatch(USERS_ACTIONS.signup(nodo));

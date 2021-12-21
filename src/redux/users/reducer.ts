@@ -21,8 +21,10 @@ const initState : UsersState = {
     id: 0,
     password: '',
     userName: '',
+    secondsRested: 0,
+    secondsWorked: 0
   },
-  users: [ { id: 1, email: 'test@hotmail.com', password: '123', userName: 'test' } ],
+  users: [ { id: 1, email: 'test@hotmail.com', password: '123', userName: 'test', secondsRested: 0, secondsWorked: 0 } ],
   status: {
     isLoading: false,
     isError: false,
@@ -56,6 +58,18 @@ const reducer = (state : UsersState = initState, action : any) : UsersState => {
         }
       }
 
+    }
+
+    case ACTIONS.UPDATE_TIMES: {
+      
+      const users = [...state.users]
+      const index = users.findIndex((user: User) => user.id! === payload.nodo.id!);
+      users[index] = payload.nodo;
+
+      return {
+        ...state,
+        users
+      }
     }
 
     case ACTIONS.SIGNUP: {

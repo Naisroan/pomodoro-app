@@ -1,4 +1,4 @@
-import Task from "../../models/Task";
+// import Task from "../../models/Task";
 import ACTIONS from "./actions";
 
 // planilla del estado
@@ -6,6 +6,9 @@ interface TimerState {
   stateType: string;
   isStart: boolean;
   sec: number;
+  interval: number;
+  secondsWorked: number;
+  secondsRested: number;
 }
 
 export const TIEMPOS = {
@@ -18,7 +21,10 @@ export const TIEMPOS = {
 const initState : TimerState = {
   stateType: 'normal',
   isStart: false,
-  sec: TIEMPOS.NORMAL
+  sec: TIEMPOS.NORMAL,
+  interval: 1,
+  secondsWorked: 0,
+  secondsRested: 0
 }
 
 // reducer principal
@@ -50,9 +56,29 @@ const reducer = (state : TimerState = initState, action : any) : TimerState => {
     }
 
     case ACTIONS.INTERVAL: {
+
+      const secWorked = state.stateType === 'normal' ? state.interval : 0;
+      const secRested = state.stateType === 'short' || state.stateType === 'long' ? state.interval : 0
+
       return {
         ...state,
-        sec: state.sec - 1
+        sec: state.sec - state.interval,
+        secondsWorked: state.secondsWorked + secWorked,
+        secondsRested: state.secondsRested + secRested
+      }
+    }
+
+    case ACTIONS.PAUSE: {
+      return {
+        ...state,
+        interval: 0
+      }
+    }
+
+    case ACTIONS.CONTINUE: {
+      return {
+        ...state,
+        interval: 1
       }
     }
 
@@ -64,21 +90,24 @@ const reducer = (state : TimerState = initState, action : any) : TimerState => {
             ...state,
             isStart: false,
             stateType: 'normal',
-            sec: TIEMPOS.NORMAL
+            sec: TIEMPOS.NORMAL,
+            interval: 1
           }
         }
         case "short": {
           return {
             ...state,
             stateType: 'short',
-            sec: TIEMPOS.SHORT
+            sec: TIEMPOS.SHORT,
+            interval: 1
           }
         }
         case "long": {
           return {
             ...state,
             stateType: 'long',
-            sec: TIEMPOS.LONG
+            sec: TIEMPOS.LONG,
+            interval: 1
           }
         }
       }

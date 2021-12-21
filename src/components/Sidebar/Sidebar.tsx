@@ -30,7 +30,7 @@ const Sidebar = ({ userName, isVisible } : SidebarType) => {
     <>
       <div id="sidebar" className={"d-flex flex-column flex-shrink-0 bg-light shadow " + (!isVisible ? "d-none" : "")}>
         <Link to="/" className="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-          <img id="logo" src={logo}></img>
+          <img id="logo" src={logo} alt="logo"></img>
         </Link>
         <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
           <li className="nav-item">

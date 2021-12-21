@@ -21,7 +21,9 @@ const Login = () => {
   const handlBtnSignInClick = () => {
     const nodo : User = {
       email: email,
-      password: password
+      password: password,
+      secondsRested: 0,
+      secondsWorked: 0
     };
     if (!validate(nodo)) {
       return;

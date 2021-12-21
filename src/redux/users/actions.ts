@@ -8,6 +8,7 @@ const ACTIONS = {
   LOGOUT: "USERS/LOGOUT",
   
   CREATE: "USERS/CREATE",
+  UPDATE_TIMES: "USERS/UPDATE_TIMES",
 
   SUCCESS: "USERS/SUCCESS",
   ERROR: "USERS/ERROR",
@@ -40,6 +41,10 @@ const ACTIONS = {
       type: ACTIONS.ERROR,
       payload: { message }
   }),
+  updateTimes: (nodo : User) => ({
+    type: ACTIONS.UPDATE_TIMES,
+    payload: { nodo }
+  })
 };
 
 export default ACTIONS;

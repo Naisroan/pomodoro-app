@@ -54,7 +54,7 @@ const reducer = (state : TasksState = initState, action : any) : TasksState => {
     case ACTIONS.DESACTIVE: {
       
       const tasks = [...state.tasks]
-      const index = tasks.findIndex((task: Task) => task.id === payload.nodo.id);
+      const index = tasks.findIndex((task: Task) => task.id! === payload.nodo.id!);
       tasks[index].active = false;
 
       return {

@@ -8,6 +8,7 @@ import Task from '../../models/Task';
 import { useSelector, useDispatch } from 'react-redux';
 import TIMER_ACTIONS from '../../redux/timer/actions';
 import TASKS_ACTIONS from '../../redux/tasks/actions';
+import USERS_ACTIONS from '../../redux/users/actions';
 import { GlobalState } from '../../redux/reducer';
 
 interface ICPomodoroTimer {
@@ -17,14 +18,24 @@ interface ICPomodoroTimer {
 const PomodoroTimer = (props : ICPomodoroTimer) => {
 
   const dispatch = useDispatch();
+
+  const auth = useSelector((state : GlobalState) => state.users.authUser);
   const timerState = useSelector((state : GlobalState) => state.timer);
+
   const [interval, setIntervalObject] = useState<NodeJS.Timer>();
+
   const beep = new Audio(beepAudio);
 
   useEffect(() => {
     if (interval && !timerState.isStart && timerState.stateType === 'normal') {
+
       clearInterval(interval);
       dispatch(TASKS_ACTIONS.desactive(props.activeTask!));
+
+      auth.secondsRested = auth.secondsRested + timerState.secondsRested;
+      auth.secondsWorked = auth.secondsWorked + timerState.secondsWorked;
+      dispatch(USERS_ACTIONS.updateTimes(auth));
+
       beep.play();
     }
   }, [timerState]);
@@ -39,6 +50,15 @@ const PomodoroTimer = (props : ICPomodoroTimer) => {
 
   const handleFinish = () => {
     dispatch(TIMER_ACTIONS.finishStep());
+    beep.play();
+  };
+
+  const handlePause = () => {
+    if (timerState.interval === 1) {
+      dispatch(TIMER_ACTIONS.pause());
+    } else {
+      dispatch(TIMER_ACTIONS.continue());
+    }
     beep.play();
   };
 
@@ -78,11 +98,18 @@ const PomodoroTimer = (props : ICPomodoroTimer) => {
               START
             </button>
             <button
-              onClick={handleFinish}
-              className="btn btn-lg btn-warning" 
+              onClick={handlePause}
+              className="btn btn-lg btn-light mx-1" 
               hidden={!timerState.isStart}
             >
-              FINISH
+              {timerState.interval === 1 ? "PAUSE" : "CONTINUE"}
+            </button>
+            <button
+              onClick={handleFinish}
+              className="btn btn-lg btn-warning mx-1" 
+              hidden={!timerState.isStart}
+            >
+              STOP
             </button>
           </div>
         </div>

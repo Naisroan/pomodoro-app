@@ -4,6 +4,8 @@ const ACTIONS = {
 
   START: "TIMER/START",
   STOP: "TIMER/STOP",
+  CONTINUE: "TIMER/CONTINUE",
+  PAUSE: "TIMER/PAUSE",
   INTERVAL: "TIMER/INTERVAL",
   SET_TYPE: "TIMER/TYPE",
   FINISH_STEP: "TIMER/FINISH_STEP",
@@ -30,6 +32,16 @@ const ACTIONS = {
 
   finishStep: () => ({
     type: ACTIONS.FINISH_STEP,
+    payload: { }
+  }),
+
+  pause: () => ({
+    type: ACTIONS.PAUSE,
+    payload: { }
+  }),
+
+  continue: () => ({
+    type: ACTIONS.CONTINUE,
     payload: { }
   }),
 };

@@ -17,7 +17,9 @@ function* signin({ payload } : any) {
         id: 0,
         email: '',
         password: '',
-        userName: ''
+        userName: '',
+        secondsRested: 0,
+        secondsWorked: 0
       }));
       return;
     }
@@ -67,7 +69,9 @@ function* logout() {
       id: 0,
       email: '',
       password: '',
-      userName: ''
+      userName: '',
+      secondsRested: 0,
+      secondsWorked: 0
     }));
     yield browserHistory.push('/login');
   } catch (error) {

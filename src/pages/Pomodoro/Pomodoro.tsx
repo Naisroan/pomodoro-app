@@ -13,7 +13,8 @@ import PomodoroTimer from '../../components/PomodoroTimer/PomodoroTimer';
 
 const Pomodoro = () => {
 
-  const tasks = useSelector((state : GlobalState) => state.tasks.tasks);
+  const auth = useSelector((state : GlobalState) => state.users.authUser);
+  const tasks = useSelector((state : GlobalState) => state.tasks.tasks.filter(i => i!.idUser! === auth.id!));
 
   const taskSort = tasks.sort((task1, task2) => task2.id! - task1.id!);
   const activeTasks = tasks.filter(item => item.active);
