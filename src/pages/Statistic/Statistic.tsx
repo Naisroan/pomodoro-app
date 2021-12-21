@@ -32,13 +32,13 @@ const Statistic = () => {
             </div>
             <div className="col-12">
               <div className="row g-3">
-                <div className="col-4">
+                <div className="col-12 col-xl-4">
                   <Counter title={"Worked time"} count={auth.secondsWorked} icon="fas fa-clock" isSecond={true} />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-xl-4">
                   <Counter title={"Rested time"} count={auth.secondsRested} icon="fas fa-stopwatch" isSecond={true} />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-xl-4">
                   <Counter title={"Finished tasks"} count={tasks.length} icon="fas fa-stream" isSecond={false} />
                 </div>
               </div>

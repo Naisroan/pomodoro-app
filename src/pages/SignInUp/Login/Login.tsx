@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 import USERS_ACTIONS from '../../../redux/users/actions';
+
 import User from '../../../models/User';
 import { GlobalState } from '../../../redux/reducer';
+
+import { EMAIL_REGEX } from '../SignInUp';
 
 import './Login.css';
 
@@ -25,9 +29,11 @@ const Login = () => {
       secondsRested: 0,
       secondsWorked: 0
     };
+
     if (!validate(nodo)) {
       return;
     }
+    
     dispatch(USERS_ACTIONS.signin(nodo));
   };
 
@@ -40,6 +46,11 @@ const Login = () => {
 
     if (!user.email|| user.email === '') {
       setEmailError('Enter your email');
+      isValid = false;
+    }
+
+    if (!user.email.match(EMAIL_REGEX)) {
+      setEmailError('Email is not valid');
       isValid = false;
     }
     

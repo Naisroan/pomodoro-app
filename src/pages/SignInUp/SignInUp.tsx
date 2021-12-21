@@ -9,6 +9,8 @@ import './SignInUp.css';
 import Login from './Login/Login';
 import Register from './Register/Register';
 
+export const EMAIL_REGEX : string = '[a-z0-9]+@[a-z]+\.[a-z]{2,3}';
+
 function SignInUp() {
 
   const dispatch = useDispatch();
